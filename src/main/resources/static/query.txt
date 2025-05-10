@@ -1,0 +1,75 @@
+mutation{
+   addUser(user:{
+    name: "Estelle",
+    email: "estelle@ps.com",
+    phoneNo:"1234567890",
+    address:{
+        street:"sector 122",
+        city:"Noida",
+        state:"UP",
+        pinCode:"201307",
+        country:"India"
+    }
+   }){
+    userId
+    name
+    email
+    phoneNo
+   }
+}
+
+query{
+    getAllUsers{
+        name
+        phoneNo
+        email
+        address{
+            state
+            pinCode
+            country
+        }
+    }
+}
+
+query{
+    getUserById(id:1){
+        name
+        phoneNo
+        email
+    }
+}
+
+mutation{
+    deleteUser(id:1)
+}
+
+mutation {
+  updateUser(id: 2, user: {
+    name: "Jane Doe",
+    email: "jane.doe@example.com",
+    phoneNo: "0987654321",
+    address: {
+      street: "456 Elm St",
+      city: "Springfield",
+      state: "IL",
+      pinCode: "62702",
+      country: "USA"
+    }
+  }) {
+    userId
+    name
+    email
+    phoneNo
+    address {
+      addressId
+      street
+      city
+      state
+      pinCode
+      country
+    }
+  }
+}
+
+
+jdbc:postgresql://c-user-service-demo.lrsb7vv5sz4c55.postgres.cosmos.azure.com:5432/user-service?user=citus&password={your_password}?currentSchema=user_service_schema&sslmode=require

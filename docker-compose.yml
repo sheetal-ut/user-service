@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7
+    container_name: user_service_redis
+    ports:
+      - "6379:6379"
+
+  user-service:
+    build: .
+    container_name: user_service_app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://c-user-service-demo.lrsb7vv5sz4c55.postgres.cosmos.azure.com:5432/user-service?user=citus&password=ctal@SS27&currentSchema=user_service_schema&sslmode=require
+      SPRING_DATASOURCE_USERNAME: citus
+      SPRING_DATASOURCE_PASSWORD: ctal@SS27
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
+      SPRING_PROFILES_ACTIVE: docker
+      APPLICATIONINSIGHTS_CONNECTION_STRING: InstrumentationKey=0a1d90f5-c5cd-4f7a-9229-4a9e9cc45997;IngestionEndpoint=https://eastus-8.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus.livediagnostics.monitor.azure.com/;ApplicationId=d052c407-2f75-4a8a-9694-ea255fc7e626
+    depends_on:
+      - redis

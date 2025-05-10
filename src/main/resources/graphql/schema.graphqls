@@ -1,0 +1,56 @@
+# Define the User type with its fields
+type User {
+    userId: ID!
+    name: String!
+    email: String!
+    phoneNo: String!
+    address: Address
+}
+
+# Define the Address type with its fields
+type Address {
+    addressId: ID!
+    street: String!
+    city: String!
+    state: String!
+    pinCode: String!
+    country: String!
+}
+
+# Define the input type for Address to be used in mutations
+input AddressInput {
+    street: String!
+    city: String!
+    state: String!
+    pinCode: String!
+    country: String!
+}
+
+# Define the input type for User to be used in mutations
+input UserInput {
+    name: String!
+    email: String!
+    phoneNo: String!
+    address: AddressInput
+}
+
+input UserInputForUpdate {
+    name: String
+    email: String
+    phoneNo: String
+    address: AddressInput
+}
+
+
+# Define the queries available in the API
+type Query {
+    getAllUsers: [User]
+    getUserById(id: ID!): User
+}
+
+# Define the mutations available in the API
+type Mutation {
+    addUser(user: UserInput!): User
+    updateUser(id: ID!, user: UserInputForUpdate!): User
+    deleteUser(id: ID!): String
+}
