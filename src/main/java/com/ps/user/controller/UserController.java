@@ -2,7 +2,6 @@ package com.ps.user.controller;
 
 import com.ps.user.entity.User;
 import com.ps.user.service.UserService;
-import graphql.GraphQLException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

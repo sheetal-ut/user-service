@@ -71,5 +71,25 @@ mutation {
   }
 }
 
+{
+  "query": "query { getAllUsers { name email } }"
+}
+
+{
+  "query": "mutation { addUser(user: { name: \"Sheetal\", email: \"sheetal@ps.com\", phoneNo:\"1234567890\", address:{ street:\"sector 122\", city:\"Noida\", state:\"UP\", pinCode:\"201307\", country:\"India\" } }) { userId name email phoneNo } }"
+}
+
+{
+  "query": "query { getUserById(id:3) { name email } }"
+}
+
+{
+  "query": "mutation { deleteUser(id:3) }"
+}
+
+
+{
+  "query": "mutation { updateUser(id: 4, user: { name: \"Jane Doe\", email: \"jane.doe@example.com\", phoneNo: \"00000000000\", address: { street: \"456 Elm St\", city: \"Springfield\", state: \"IL\", pinCode: \"62702\", country: \"USA\" } }) { userId name email phoneNo address { addressId street city state pinCode country } } }"
+}
 
 jdbc:postgresql://c-user-service-demo.lrsb7vv5sz4c55.postgres.cosmos.azure.com:5432/user-service?user=citus&password={your_password}?currentSchema=user_service_schema&sslmode=require
